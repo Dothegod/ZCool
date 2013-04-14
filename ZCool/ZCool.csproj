@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZCool</RootNamespace>
-    <AssemblyName>ZCool</AssemblyName>
+    <AssemblyName>视觉</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
@@ -113,6 +113,8 @@
     <Content Include="HttpLib\Newtonsoft.Json.WindowsPhone.dll" />
     <Content Include="HttpLib\Newtonsoft.Json.WindowsPhone.xml" />
     <Content Include="image\logo.png" />
+    <Content Include="image\View.png" />
+    <Content Include="image\WideTitle.png" />
     <Content Include="image\捕获.JPG" />
     <Content Include="README_FIRST.txt" />
     <Content Include="SplashScreenImage.jpg" />
