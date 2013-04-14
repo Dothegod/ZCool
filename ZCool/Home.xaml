@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:controlsPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls" x:Class="ZCool.Home"
     mc:Ignorable="d"
-    d:DesignHeight="480" d:DesignWidth="480">
+    d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded">
 
 	<UserControl.Resources>
 		<Style x:Key="PivotStyle1" TargetType="controls:Pivot">
@@ -46,7 +46,7 @@
         </Grid.RowDefinitions>
         <controls:Pivot x:Name="SuggestPivot" Grid.Row="0" Style="{StaticResource PivotStyle1}">
         </controls:Pivot>
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="1" Margin="0,5,0,0">
             <toolkit:WrapPanel x:Name="ImagesWrapPanel" />
         </ScrollViewer>
     </Grid>

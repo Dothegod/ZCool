@@ -73,6 +73,11 @@
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HomeParser.cs" />
+    <Compile Include="HttpLib\DataAccess.cs" />
+    <Compile Include="HttpLib\HtmlParse.cs" />
+    <Compile Include="HttpLib\IntentHelper\DownloadEventArgs.cs" />
+    <Compile Include="HttpLib\IntentHelper\DownloadHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -104,6 +109,9 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="HttpLib\HtmlAgilityPack.dll" />
+    <Content Include="HttpLib\Newtonsoft.Json.WindowsPhone.dll" />
+    <Content Include="HttpLib\Newtonsoft.Json.WindowsPhone.xml" />
     <Content Include="image\logo.png" />
     <Content Include="image\捕获.JPG" />
     <Content Include="README_FIRST.txt" />
