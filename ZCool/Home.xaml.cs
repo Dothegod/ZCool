@@ -15,7 +15,8 @@ namespace ZCool
 {
     public partial class Home : UserControl
     {
-        private string HomeUri = "http://www.zcool.com.cn/";
+        private const string HomeUri = "http://www.zcool.com.cn/";
+        private int PageIndex = 1;
         public Home()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace ZCool
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            CanGetMore(false);
             DownloadHelper dl = new DownloadHelper();
             dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadReviewsComplete);
             dl.HttpWebRequestDownloadGet(HomeUri);
@@ -32,14 +34,14 @@ namespace ZCool
             HomeParser parser = new HomeParser();
             Issues Issue = parser.Parse(e._DownloadString);
 
-            UpdateIndexShow(Issue);
+            UpdateIndexShow(Issue.IndexSHowList);
 
-            UpdateCams(Issue);
+            UpdateCams(Issue.CamList);
+            CanGetMore(true);
         }
 
-        private void UpdateCams(Issues Issue)
+        private void UpdateCams(List<Issue> CamList)
         {
-            List<Issue> CamList = Issue.CamList;
             double width = ImagesWrapPanel.ActualWidth / 2;
             foreach (Issue i in CamList)
             {
@@ -53,9 +55,8 @@ namespace ZCool
             }
         }
 
-        private void UpdateIndexShow(Issues Issue)
+        private void UpdateIndexShow(List<Issue> IndexSHow)
         {
-            List<Issue> IndexSHow = Issue.IndexSHowList;
             foreach (Issue i in IndexSHow)
             {
                 Image img = new Image();
@@ -68,6 +69,33 @@ namespace ZCool
                 SuggestPivot.Items.Add(Item);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CanGetMore(false);
+            PageIndex++;
+            DownloadHelper dl = new DownloadHelper();
+            dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadCamComplete);
+            string WebUri = string.Format("{0}index.do?p={1}#mainList", HomeUri, PageIndex);
+            dl.HttpWebRequestDownloadGet(WebUri);
+            
+        }
+
+        private void OnLoadCamComplete(object sender, DownloadEventArgs e)
+        {
+            HomeParser parser = new HomeParser();
+            List<Issue> Issue = parser.ParseImage(e._DownloadString);
+
+            UpdateCams(Issue);
+            CanGetMore(true);
+        }
+
+        private void CanGetMore(bool flag)
+        {
+            MoreButton.IsEnabled = flag;
+            MoreButton.Content = flag ? "更多" : "读取中，请稍后……";
+        }
+
 
     }
 }

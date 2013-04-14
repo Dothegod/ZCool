@@ -12,7 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
     <!--LayoutRoot 是包含所有页面内容的根网格-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -22,12 +22,6 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel 包含应用程序的名称和页标题-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0">
-            <StackPanel.Background>
-                <ImageBrush Stretch="Fill" ImageSource="/image/捕获.JPG"/>
-            </StackPanel.Background>
-            <Image Source="/image/logo.png" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="None"/>
-        </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1">
             <local:Home/>

@@ -55,6 +55,17 @@ namespace ZCool
             }
         }
 
+        public List<Issue> ParseImage(string Content)
+        {
+            if (string.IsNullOrEmpty(Content))
+            {
+                return null;
+            }
+            List<Issue> IssuesList = new List<Issue>();
+            HtmlParser parser = new HtmlParser(Content);
+            ParseImage(IssuesList, parser);
+            return IssuesList;
+        }
         private void ParseImage(List<Issue> IssueList, HtmlParser parser) 
         {
             HtmlNode CamNode = parser.GetHtmlNode("ul", "class", "layout camWholeBoxUl");
