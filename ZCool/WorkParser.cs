@@ -7,21 +7,27 @@ using System.Text;
 
 namespace ZCool
 {
+    class WorkInfo
+    {
+        public List<string> ImageList = new List<string>();
+        public int PageCount;
+    }
     class WorkParser
     {
-        public List<string> Parse(string Content)
+        public WorkInfo Parse(string Content)
         {
             if (string.IsNullOrEmpty(Content))
             {
                 return null;
             }
-            List<string> ImageList = new List<string>();
+            WorkInfo info = new WorkInfo();
+            List<string> ImageList = info.ImageList;
             HtmlParser Parser = new HtmlParser(Content);
             HtmlNode WorkShow = Parser.GetHtmlNode("div", "class", "workShow");
             var workli = Parser.GetHtmlNodeList("div","class","wsContent");
             foreach (HtmlNode node in workli)
             {
-                HtmlNode ImageNode = node.Element("img");
+                HtmlNode ImageNode = node.Descendants("img").First();
                 if (ImageNode == null)
                 {
                     continue;
@@ -29,7 +35,12 @@ namespace ZCool
                 string ImageSource = ImageNode.Attributes["src"].Value;
                 ImageList.Add(ImageSource);
             }
-            return ImageList;
+            HtmlNode Page = Parser.GetHtmlNode("div", "class", "bigPage pt30 pb20 vm center");
+            if (Page != null)
+            {
+                info.PageCount = Page.Elements("a").Count() - 2;
+            }
+            return info;
         }
     }
 }

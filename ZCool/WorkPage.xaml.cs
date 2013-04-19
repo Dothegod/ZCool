@@ -14,9 +14,13 @@ namespace ZCool
 {
     public partial class WorkPage : PhoneApplicationPage
     {
+        private int PageIndex = 1;
+        private string WorkUri;
+        private int PageCount = 0;
         public WorkPage()
         {
             InitializeComponent();
+            CanGetMore(true);
         }
 
         private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
@@ -24,8 +28,9 @@ namespace ZCool
             if (NavigationContext.QueryString.Count > 0)
             {
                 string webUri = NavigationContext.QueryString["Target"];
+                WorkUri = webUri.Replace(".html", "");
                 DownloadHelper dl = new DownloadHelper();
-                dl.DownloadCallbackEvent += OnLoadReviewsComplete;
+                dl.DownloadCallbackEvent += OnLoadComplete;
                 dl.HttpWebRequestDownloadGet(webUri);
             }
             else
@@ -35,10 +40,12 @@ namespace ZCool
             
         }
 
-        private void OnLoadReviewsComplete(object sender, DownloadEventArgs e)
+        private void OnLoadComplete(object sender, DownloadEventArgs e)
         {
             string Content = e._DownloadString;
-            List<string> ImageList = new WorkParser().Parse(Content);
+            WorkInfo Info = new WorkParser().Parse(Content);
+            List<string> ImageList = Info.ImageList;
+            PageCount = Info.PageCount;
             foreach (string Source in ImageList)
             {
                 Image img = new Image();
@@ -47,12 +54,28 @@ namespace ZCool
                 img.Width = ImageStackPanel.ActualWidth;
                 ImageStackPanel.Children.Add(img);
             }
+            CanGetMore(true);
 
+        }
+
+        private void CanGetMore(bool flag)
+        {
+            MoreButton.IsEnabled = flag;
+            MoreButton.Content = flag ? "更多" : "读取中，请稍后……";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (PageIndex >= PageCount)
+            {
+                MessageBox.Show("后面没有了");
+                return;
+            }
+            CanGetMore(false);
+            DownloadHelper dl = new DownloadHelper();
+            dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadComplete);
+            string WebUri = string.Format("{0}/{1}.html", WorkUri, PageIndex);
+            dl.HttpWebRequestDownloadGet(WebUri);
         }
 
     }
