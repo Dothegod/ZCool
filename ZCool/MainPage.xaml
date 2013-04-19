@@ -24,7 +24,7 @@
         <!--TitlePanel 包含应用程序的名称和页标题-->
 
         <Grid x:Name="ContentPanel" Grid.Row="1">
-            <local:Home/>
+            <local:Home Name="Home"/>
         </Grid>
     </Grid>
 

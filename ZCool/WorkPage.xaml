@@ -21,7 +21,9 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <StackPanel Name="ImageStackPanel"/>
+                <StackPanel Name="ImageStackPanel">
+               
+                </StackPanel>
                 <HyperlinkButton Grid.Row="1" Name="MoreButton" Click="Button_Click" Background="{StaticResource BackGroundBrush}" Margin="-15,0" Foreground="Black"/>
             </Grid>
         </ScrollViewer>

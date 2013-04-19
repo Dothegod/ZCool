@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MyLib.HttpLib;
+using System.Windows.Media.Imaging;
 
 namespace ZCool
 {
@@ -37,6 +38,21 @@ namespace ZCool
         private void OnLoadReviewsComplete(object sender, DownloadEventArgs e)
         {
             string Content = e._DownloadString;
+            List<string> ImageList = new WorkParser().Parse(Content);
+            foreach (string Source in ImageList)
+            {
+                Image img = new Image();
+                img.Source = new BitmapImage(new Uri(Source, UriKind.Absolute));
+                img.Stretch = System.Windows.Media.Stretch.Uniform;
+                img.Width = ImageStackPanel.ActualWidth;
+                ImageStackPanel.Children.Add(img);
+            }
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

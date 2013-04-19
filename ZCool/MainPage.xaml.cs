@@ -19,6 +19,12 @@ namespace ZCool
         public MainPage()
         {
             InitializeComponent();
+            Home.WorkDetial = ShowWorkDeatial;
+        }
+        private void ShowWorkDeatial(string Uri)
+        {
+            string uri = string.Format("/WorkPage.xaml?Target={0}", Uri);
+            NavigationService.Navigate(new Uri(uri, UriKind.Relative));
         }
     }
 }

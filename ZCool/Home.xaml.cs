@@ -17,6 +17,7 @@ namespace ZCool
     {
         private const string HomeUri = "http://www.zcool.com.cn/";
         private int PageIndex = 1;
+        public Action<string> WorkDetial;
         public Home()
         {
             InitializeComponent();
@@ -49,11 +50,27 @@ namespace ZCool
                 img.Source = new BitmapImage(new Uri(i.ImageUri, UriKind.Absolute));
                 img.Tag = i.TargetUri;
                 img.Width = width;
+                img.Tap += ImageTap;
 
                 ImagesWrapPanel.Children.Add(img);
 
             }
         }
+        private void ImageTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (WorkDetial != null)
+            {
+                Image img = sender as Image;
+                string Uri = (string)img.Tag;
+                if (string.IsNullOrEmpty(Uri))
+                {
+                    return;
+                }
+                WorkDetial(Uri);
+            }
+            
+        }
+
 
         private void UpdateIndexShow(List<Issue> IndexSHow)
         {
@@ -62,10 +79,11 @@ namespace ZCool
                 Image img = new Image();
                 img.Source = new BitmapImage(new Uri(i.ImageUri, UriKind.Absolute));
                 img.Tag = i.TargetUri;
+                img.Tap += ImageTap;
                 PivotItem Item = new PivotItem();
                 Item.Margin = new Thickness(0);
                 Item.Content = img;
-
+                
                 SuggestPivot.Items.Add(Item);
             }
         }
