@@ -25,6 +25,10 @@ namespace ZCool
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            if (ImagesWrapPanel.Children.Count > 0)
+            {
+                return;
+            }
             CanGetMore(false);
             DownloadHelper dl = new DownloadHelper();
             dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadReviewsComplete);

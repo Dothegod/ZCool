@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace ZCool
 {
@@ -21,24 +22,31 @@ namespace ZCool
                 return null;
             }
             WorkInfo info = new WorkInfo();
-            List<string> ImageList = info.ImageList;
-            HtmlParser Parser = new HtmlParser(Content);
-            HtmlNode WorkShow = Parser.GetHtmlNode("div", "class", "workShow");
-            var workli = Parser.GetHtmlNodeList("div","class","wsContent");
-            foreach (HtmlNode node in workli)
+            try
             {
-                HtmlNode ImageNode = node.Descendants("img").First();
-                if (ImageNode == null)
-                {
-                    continue;
-                }
-                string ImageSource = ImageNode.Attributes["src"].Value;
-                ImageList.Add(ImageSource);
+	            List<string> ImageList = info.ImageList;
+	            HtmlParser Parser = new HtmlParser(Content);
+	            HtmlNode WorkShow = Parser.GetHtmlNode("div", "class", "workShow");
+	            var workli = Parser.GetHtmlNodeList("div","class","wsContent");
+	            foreach (HtmlNode node in workli)
+	            {
+	                HtmlNode ImageNode = node.Descendants("img").First();
+	                if (ImageNode == null)
+	                {
+	                    continue;
+	                }
+	                string ImageSource = ImageNode.Attributes["src"].Value;
+	                ImageList.Add(ImageSource);
+	            }
+	            HtmlNode Page = Parser.GetHtmlNode("div", "class", "bigPage pt30 pb20 vm center");
+	            if (Page != null)
+	            {
+	                info.PageCount = Page.Elements("a").Count() - 2;
+	            }
             }
-            HtmlNode Page = Parser.GetHtmlNode("div", "class", "bigPage pt30 pb20 vm center");
-            if (Page != null)
+            catch
             {
-                info.PageCount = Page.Elements("a").Count() - 2;
+                MessageBox.Show("作品解析错误");
             }
             return info;
         }
