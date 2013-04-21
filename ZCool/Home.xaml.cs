@@ -18,9 +18,12 @@ namespace ZCool
         private const string HomeUri = "http://www.zcool.com.cn/";
         private int PageIndex = 1;
         public Action<string> WorkDetial;
+        public Action<bool> IsDownLoadFinished;
+
         public Home()
         {
             InitializeComponent();
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -116,6 +119,10 @@ namespace ZCool
         {
             MoreButton.IsEnabled = flag;
             MoreButton.Content = flag ? "更多" : "读取中，请稍后……";
+            if (IsDownLoadFinished != null)
+            {
+                IsDownLoadFinished(flag);
+            }
         }
 
 

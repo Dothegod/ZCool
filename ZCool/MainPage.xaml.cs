@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 
 namespace ZCool
 {
@@ -21,11 +22,22 @@ namespace ZCool
             InitializeComponent();
             Home.WorkDetial = ShowWorkDeatial;
             LiveTitles.SetWideBackgroundImage("/image/WideTitle.png");
+            Indicator.Text = "加载中...";
+
+            Home.IsDownLoadFinished = CanGetMore;
+ 
         }
         private void ShowWorkDeatial(string Uri)
         {
             string uri = string.Format("/WorkPage.xaml?Target={0}", Uri);
             NavigationService.Navigate(new Uri(uri, UriKind.Relative));
         }
+        private void CanGetMore(bool flag)
+        {
+            SystemTray.IsVisible = !flag;
+            Indicator.IsIndeterminate = !flag;
+            Indicator.IsVisible = !flag;
+        }
+
     }
 }

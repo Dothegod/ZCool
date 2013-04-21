@@ -18,14 +18,10 @@ namespace ZCool
         private int PageIndex = 1;
         private string WorkUri;
         private int PageCount = 0;
-        ProgressIndicator m_ProgressIndicator;
 
         public WorkPage()
         {
             InitializeComponent();
-            m_ProgressIndicator = new Microsoft.Phone.Shell.ProgressIndicator();
-            Microsoft.Phone.Shell.SystemTray.ProgressIndicator = m_ProgressIndicator;
-            m_ProgressIndicator.Text = "加载中...";
             CanGetMore(false);
 
         }
@@ -55,6 +51,7 @@ namespace ZCool
             if (ImageList.Count == 0)
             {
                 MessageBox.Show("抱歉，这个作品不包含图片，无法展示");
+                CanGetMore(true);
                 NavigationService.GoBack();
             }
             PageCount = Info.PageCount;
@@ -67,6 +64,7 @@ namespace ZCool
                 img.Width = ImageStackPanel.ActualWidth;
                 img.Hold += Image_Hold;
                 img.ImageOpened += ImageOpen;
+                img.Margin = new Thickness(0, 5, 0, 0);
                 ImageStackPanel.Children.Add(img);
             }
 
@@ -81,8 +79,8 @@ namespace ZCool
             MoreButton.IsEnabled = flag;
             MoreButton.Content = flag ? "更多" : "读取中，请稍后……";
             SystemTray.IsVisible = !flag;
-            m_ProgressIndicator.IsIndeterminate = !flag;
-            m_ProgressIndicator.IsVisible = !flag;
+            Indicator.IsIndeterminate = !flag;
+            Indicator.IsVisible = !flag;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

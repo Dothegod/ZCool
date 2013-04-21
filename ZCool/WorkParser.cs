@@ -30,7 +30,12 @@ namespace ZCool
 	            var workli = Parser.GetHtmlNodeList("div","class","wsContent");
 	            foreach (HtmlNode node in workli)
 	            {
-	                HtmlNode ImageNode = node.Descendants("img").First();
+                    var Nodes = node.Descendants("img");
+                    if (Nodes.Count() == 0)
+                    {
+                        continue;
+                    }
+                    HtmlNode ImageNode = Nodes.First();
 	                if (ImageNode == null)
 	                {
 	                    continue;
