@@ -27,6 +27,7 @@ namespace ZCool
             Microsoft.Phone.Shell.SystemTray.ProgressIndicator = m_ProgressIndicator;
             m_ProgressIndicator.Text = "加载中...";
             CanGetMore(false);
+
         }
 
         private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
@@ -53,7 +54,7 @@ namespace ZCool
             List<string> ImageList = Info.ImageList;
             if (ImageList.Count == 0)
             {
-                MessageBox.Show("抱歉，这个作品包含视频，无法展示");
+                MessageBox.Show("抱歉，这个作品不包含图片，无法展示");
                 NavigationService.GoBack();
             }
             PageCount = Info.PageCount;

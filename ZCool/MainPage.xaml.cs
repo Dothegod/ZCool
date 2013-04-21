@@ -20,6 +20,7 @@ namespace ZCool
         {
             InitializeComponent();
             Home.WorkDetial = ShowWorkDeatial;
+            LiveTitles.SetWideBackgroundImage("/image/WideTitle.png");
         }
         private void ShowWorkDeatial(string Uri)
         {

@@ -78,6 +78,7 @@
     <Compile Include="HttpLib\HtmlParse.cs" />
     <Compile Include="HttpLib\IntentHelper\DownloadEventArgs.cs" />
     <Compile Include="HttpLib\IntentHelper\DownloadHelper.cs" />
+    <Compile Include="LiveTitles.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
