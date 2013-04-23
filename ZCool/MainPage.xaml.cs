@@ -25,6 +25,13 @@ namespace ZCool
             Indicator.Text = "加载中...";
 
             Home.IsDownLoadFinished = CanGetMore;
+            bool firststart = true;
+            DataStorage.GetInstance().LoadData("fist",ref firststart);
+            if (firststart)
+            {
+                MessageBox.Show("本应用均为高清大图，建议在WiFi环境下使用");
+                DataStorage.GetInstance().SaveData("fist", false);
+            }
  
         }
         private void ShowWorkDeatial(string Uri)
