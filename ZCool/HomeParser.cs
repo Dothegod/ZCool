@@ -93,8 +93,7 @@ namespace ZCool
 	                {
 	                    continue;
 	                }
-	                string TargetUri = ImageNode.Attributes["href"].Value;
-	                issue.TargetUri = HomeUri + TargetUri;
+                    issue.TargetUri = ImageNode.Attributes["href"].Value;
 	                issue.ImageUri = ImageNode.Element("img").Attributes["src"].Value;
 	                IssueList.Add(issue);
 	            }
