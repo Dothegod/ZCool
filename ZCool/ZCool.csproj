@@ -88,6 +88,9 @@
     <Compile Include="Tip.xaml.cs">
       <DependentUpon>Tip.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Versionnfo.xaml.cs">
+      <DependentUpon>Versionnfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkPage.xaml.cs">
       <DependentUpon>WorkPage.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Versionnfo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
