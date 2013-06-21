@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 
 namespace ZCool
 {
@@ -21,16 +22,16 @@ namespace ZCool
         {
             InitializeComponent();
             Home.WorkDetial = ShowWorkDeatial;
-            LiveTitles.SetWideBackgroundImage("/image/WideTitle.png");
+            //LiveTitles.SetWideBackgroundImage("/image/WideTitle.png");
             Indicator.Text = "加载中...";
 
             Home.IsDownLoadFinished = CanGetMore;
-            bool firststart = true;
-            DataStorage.GetInstance().LoadData("fist",ref firststart);
-            if (firststart)
+            string Version = "";
+            DataStorage.GetInstance().LoadData("version", ref Version);
+            if (Version != App.Version)
             {
-                MessageBox.Show("本应用均为高清大图，建议在WiFi环境下使用");
-                DataStorage.GetInstance().SaveData("fist", false);
+                MessageBox.Show("本应用均为高清大图，建议在WiFi环境下使用\n长按图片可以保存至本地");
+                DataStorage.GetInstance().SaveData("version", App.Version);
             }
  
         }

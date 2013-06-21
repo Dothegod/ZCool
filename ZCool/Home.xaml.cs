@@ -24,6 +24,7 @@ namespace ZCool
         public Home()
         {
             InitializeComponent();
+            VersionInfo.AppVersion = App.Version;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
