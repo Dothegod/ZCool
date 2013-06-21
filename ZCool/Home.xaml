@@ -63,7 +63,7 @@
             </controls:PivotItem>
             <controls:PivotItem>
                 <Grid>
-                    <ZCool:Versionnfo IsChn="True" AppVersion="1.1"/>                    
+                    <ZCool:Versionnfo x:Name="VersionInfo" IsChn="True" AppVersion="1.1"/>                    
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>
