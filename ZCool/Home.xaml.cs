@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using MyLib.HttpLib;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using Microsoft.Phone.Tasks;
 
 namespace ZCool
 {
@@ -19,7 +20,7 @@ namespace ZCool
         private int PageIndex = 1;
         public Action<string> WorkDetial;
         public Action<bool> IsDownLoadFinished;
-
+        bool isStart = true;
         public Home()
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace ZCool
             DownloadHelper dl = new DownloadHelper();
             dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadReviewsComplete);
             dl.HttpWebRequestDownloadGet(HomeUri);
+
         }
         private void OnLoadReviewsComplete(object sender, DownloadEventArgs e)
         {
@@ -46,6 +48,11 @@ namespace ZCool
 
             UpdateCams(Issue.CamList);
             CanGetMore(true);
+            if (isStart)
+            {
+                AskForReview();
+            }
+
         }
 
         private void UpdateCams(List<Issue> CamList)
@@ -124,6 +131,30 @@ namespace ZCool
                 IsDownLoadFinished(flag);
             }
         }
+
+        private void AskForReview()
+        {
+            int times = 0;
+            DataStorage.GetInstance().LoadData("time", ref times);
+#if DEBUG
+            if (times > 3)
+#else
+            if (times == 3)
+#endif
+            {
+                CamPivot.SelectedIndex = 1;
+                if (MessageBoxResult.OK == MessageBox.Show("亲，觉得好用就给个好评吧^_^", "求好评", MessageBoxButton.OKCancel))
+                {
+                    MarketplaceReviewTask Rt = new MarketplaceReviewTask();
+                    Rt.Show();
+                }
+                CamPivot.SelectedIndex = 0;
+            }
+            times++;
+            DataStorage.GetInstance().SaveData("time", times);
+
+        }
+
 
 
     }
