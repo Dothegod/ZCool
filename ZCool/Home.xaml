@@ -6,35 +6,38 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:controlsPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls" x:Class="ZCool.Home"
     mc:Ignorable="d"
     d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded" Foreground="White">
-
-    <UserControl.Resources>
-        <Style x:Key="PivotStyle1" TargetType="controls:Pivot">
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <Grid/>
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="controls:Pivot">
-                        <ItemsPresenter x:Name="PivotItemPresenter" Grid.Row="2"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-    <UserControl.FontFamily>
-        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-    </UserControl.FontFamily>
-    <UserControl.FontSize>
-        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
-    </UserControl.FontSize>
+	<UserControl.Resources>
+		<Style x:Key="PivotStyle1" TargetType="controls:Pivot">
+			<Setter Property="Margin" Value="0"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="ItemsPanel">
+				<Setter.Value>
+					<ItemsPanelTemplate>
+						<Grid/>
+					</ItemsPanelTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="controls:Pivot">
+						<Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<Grid Background="{TemplateBinding Background}" Grid.RowSpan="3"/>
+							<ContentControl ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" HorizontalAlignment="Left" Margin="0" Style="{StaticResource PivotTitleStyle}"/>
+							<controlsPrimitives:PivotHeadersControl x:Name="HeadersListElement" Grid.Row="1"/>
+							<ItemsPresenter x:Name="PivotItemPresenter" Margin="{TemplateBinding Padding}" Grid.Row="2"/>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -45,12 +48,12 @@
         <Grid x:Name="TitlePanel" Grid.Row="0" Background="{StaticResource BackGroundBrush}">
             <Image Source="/image/View.png" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="None"/>
         </Grid>
-        <controls:Pivot x:Name="SuggestPivot" Grid.Row="1" Style="{StaticResource PivotStyle1}">
+        <controls:Pivot x:Name="SuggestPivot" Grid.Row="1" Style="{StaticResource PivotStyle1}" >
         </controls:Pivot>
-        <controls:Pivot Grid.Row="2" Style="{StaticResource PivotStyle1}">
+        <controls:Pivot x:Name="CamPivot" Grid.Row="2" Style="{StaticResource PivotStyle1}"  Margin="0,5,0,0">
             <controls:PivotItem Margin="0">
                 <Grid>
-                    <ScrollViewer Margin="0,5,0,0">
+                    <ScrollViewer>
                         <StackPanel>
                             <toolkit:WrapPanel x:Name="ImagesWrapPanel" />
                             <HyperlinkButton Name="MoreButton" Click="Button_Click" Background="{StaticResource BackGroundBrush}" Margin="-15,0" Foreground="Black"/>

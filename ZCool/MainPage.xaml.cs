@@ -21,7 +21,7 @@ namespace ZCool
         {
             InitializeComponent();
             Home.WorkDetial = ShowWorkDeatial;
-            LiveTitles.SetWideBackgroundImage("/image/WideTitle.png");
+            //LiveTitles.SetWideBackgroundImage("/image/WideTitle.png");
             Indicator.Text = "加载中...";
 
             Home.IsDownLoadFinished = CanGetMore;

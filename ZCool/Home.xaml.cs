@@ -23,11 +23,11 @@ namespace ZCool
         public Home()
         {
             InitializeComponent();
-
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+
             if (ImagesWrapPanel.Children.Count > 0)
             {
                 return;
