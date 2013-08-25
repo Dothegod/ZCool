@@ -15,6 +15,7 @@ namespace ZCool
         public VersionPage()
         {
             InitializeComponent();
+            Verison.AppVersion = App.Version;
         }
     }
 }

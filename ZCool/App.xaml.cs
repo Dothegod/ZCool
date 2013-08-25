@@ -22,7 +22,7 @@ namespace ZCool
         /// </summary>
         /// <returns>电话应用程序的根框架。</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
-        public static string Version = "1.2";
+        public static string Version = "1.3";
         /// <summary>
         /// Application 对象的构造函数。
         /// </summary>
