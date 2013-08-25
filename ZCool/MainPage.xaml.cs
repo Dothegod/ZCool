@@ -47,5 +47,7 @@ namespace ZCool
             Indicator.IsVisible = !flag;
         }
 
+
+
     }
 }

@@ -6,38 +6,38 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:controlsPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls" x:Class="ZCool.Home"
     mc:Ignorable="d"
     d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded" Foreground="White">
-	<UserControl.Resources>
-		<Style x:Key="PivotStyle1" TargetType="controls:Pivot">
-			<Setter Property="Margin" Value="0"/>
-			<Setter Property="Padding" Value="0"/>
-			<Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="ItemsPanel">
-				<Setter.Value>
-					<ItemsPanelTemplate>
-						<Grid/>
-					</ItemsPanelTemplate>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="controls:Pivot">
-						<Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto"/>
-								<RowDefinition Height="Auto"/>
-								<RowDefinition Height="*"/>
-							</Grid.RowDefinitions>
-							<Grid Background="{TemplateBinding Background}" Grid.RowSpan="3"/>
-							<ContentControl ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" HorizontalAlignment="Left" Margin="0" Style="{StaticResource PivotTitleStyle}"/>
-							<controlsPrimitives:PivotHeadersControl x:Name="HeadersListElement" Grid.Row="1"/>
-							<ItemsPresenter x:Name="PivotItemPresenter" Margin="{TemplateBinding Padding}" Grid.Row="2"/>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</UserControl.Resources>
+    <UserControl.Resources>
+        <Style x:Key="PivotStyle1" TargetType="controls:Pivot">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <Grid/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="controls:Pivot">
+                        <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Background="{TemplateBinding Background}" Grid.RowSpan="3"/>
+                            <ContentControl ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" HorizontalAlignment="Left" Margin="0" Style="{StaticResource PivotTitleStyle}"/>
+                            <controlsPrimitives:PivotHeadersControl x:Name="HeadersListElement" Grid.Row="1"/>
+                            <ItemsPresenter x:Name="PivotItemPresenter" Margin="{TemplateBinding Padding}" Grid.Row="2"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -46,21 +46,15 @@
         </Grid.RowDefinitions>
         <Grid x:Name="TitlePanel" Grid.Row="0" Background="{StaticResource BackGroundBrush}">
             <Image Source="/image/View.png" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="None"/>
+            <Border  HorizontalAlignment="Right" Height="35" Margin="0,5,10,0" VerticalAlignment="Top" Width="35" CornerRadius="20" Tap="Border_Tap" Background="#FFFFC448">
+                <TextBlock Text="?" Foreground="Black" TextAlignment="Center" FontWeight="Bold" FontSize="25"/>
+            </Border>
         </Grid>
-        <ScrollViewer Grid.Row="1" >
+        <ScrollViewer Grid.Row="1" Name="ScrollViewer">
             <StackPanel>
                 <controls:Pivot x:Name="SuggestPivot" Style="{StaticResource PivotStyle1}"/>
-                <controls:Pivot Margin="0,5,0,0" x:Name="CamPivot" Grid.Row="2" Style="{StaticResource PivotStyle1}">
-                    <controls:PivotItem Margin="0">
-                        <StackPanel>
-                            <toolkit:WrapPanel x:Name="ImagesWrapPanel" />
-                            <HyperlinkButton Name="MoreButton" Click="Button_Click" Background="{StaticResource BackGroundBrush}" Margin="-15,0" Foreground="Black"/>
-                        </StackPanel>
-                    </controls:PivotItem>
-                    <controls:PivotItem>
-                        <ZCool:Versionnfo x:Name="VersionInfo" IsChn="True" AppVersion="1.1"/>
-                    </controls:PivotItem>
-                </controls:Pivot>
+                <toolkit:WrapPanel x:Name="ImagesWrapPanel" Margin="0,5,0,0" />
+                <HyperlinkButton Name="MoreButton" Click="Button_Click" Background="{StaticResource BackGroundBrush}" Margin="-15,0" Foreground="Black" FontSize="30"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

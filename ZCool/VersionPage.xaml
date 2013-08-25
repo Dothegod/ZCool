@@ -5,34 +5,26 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:ZCool" 
-    x:Class="ZCool.MainPage"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    xmlns:local="clr-namespace:ZCool"
+    x:Class="ZCool.VersionPage"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
 
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator x:Name="Indicator"/>
-    </shell:SystemTray.ProgressIndicator>
-
-    <!--LayoutRoot 是包含所有页面内容的根网格-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackGroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <!--TitlePanel 包含应用程序的名称和页标题-->
-
-        <Grid x:Name="ContentPanel" Grid.Row="1">
-            <local:Home Name="Home"/>
-<!--             <Border  HorizontalAlignment="Right" Height="35" Margin="0,5,10,0" VerticalAlignment="Top" Width="35" CornerRadius="20" Tap="Border_Tap" Background="#FFFFCD63"> -->
-<!--                 <TextBlock Text="?" Foreground="Black" TextAlignment="Center" FontWeight="Bold" FontSize="25"/> -->
-<!--             </Border> -->
+        <Grid x:Name="TitlePanel" Grid.Row="0" Background="{StaticResource BackGroundBrush}" Margin="10,10,0,0">
+            <Image Source="/image/View.png" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="None"/>
         </Grid>
+
+        <local:Versionnfo Grid.Row="1" Foreground="Black" Margin="10,30,0,0"/>
+
     </Grid>
 
 </phone:PhoneApplicationPage>

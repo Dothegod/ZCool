@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using MyLib.HttpLib;
 using System.Windows.Media.Imaging;
 using Microsoft.Devices;
+using Microsoft.Phone.Tasks;
 
 namespace ZCool
 {
@@ -18,6 +19,7 @@ namespace ZCool
         private int PageIndex = 1;
         private string WorkUri;
         private int PageCount = 0;
+        string webUri;
 
         public WorkPage()
         {
@@ -30,7 +32,7 @@ namespace ZCool
         {
             if (NavigationContext.QueryString.Count > 0)
             {
-                string webUri = NavigationContext.QueryString["Target"];
+                webUri = NavigationContext.QueryString["Target"];
                 WorkUri = webUri.Replace(".html", "");
                 DownloadHelper dl = new DownloadHelper();
                 dl.DownloadCallbackEvent += OnLoadComplete;
@@ -50,9 +52,18 @@ namespace ZCool
             List<string> ImageList = Info.ImageList;
             if (ImageList.Count == 0)
             {
-                MessageBox.Show("抱歉，这个作品不包含图片，无法展示");
-                CanGetMore(true);
-                NavigationService.GoBack();
+                if (MessageBoxResult.OK == MessageBox.Show("抱歉","这个作品包含视频等信息，需要用浏览器展示吗？",MessageBoxButton.OKCancel))
+                {
+                    WebBrowserTask t = new WebBrowserTask();
+                    t.URL = webUri;
+                    t.Show();
+                }
+                else
+                {
+                    CanGetMore(true);
+                    NavigationService.GoBack();
+                }
+
             }
             PageCount = Info.PageCount;
 

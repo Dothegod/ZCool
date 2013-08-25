@@ -24,7 +24,6 @@ namespace ZCool
         public Home()
         {
             InitializeComponent();
-            VersionInfo.AppVersion = App.Version;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -144,17 +143,20 @@ namespace ZCool
             if (times == 3)
 #endif
             {
-                CamPivot.SelectedIndex = 1;
                 if (MessageBoxResult.OK == MessageBox.Show("亲，觉得好用就给个好评吧^_^", "求好评", MessageBoxButton.OKCancel))
                 {
                     MarketplaceReviewTask Rt = new MarketplaceReviewTask();
                     Rt.Show();
                 }
-                CamPivot.SelectedIndex = 0;
             }
             times++;
             DataStorage.GetInstance().SaveData("time", times);
 
+        }
+
+        private void Border_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            (App.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/VersionPage.xaml", UriKind.Relative));
         }
 
 
