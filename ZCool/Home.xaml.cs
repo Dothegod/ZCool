@@ -11,6 +11,7 @@ using MyLib.HttpLib;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using Microsoft.Phone.Tasks;
+using System.Threading;
 
 namespace ZCool
 {
@@ -24,8 +25,28 @@ namespace ZCool
         public Home()
         {
             InitializeComponent();
+            System.Windows.Threading.DispatcherTimer dpt = new System.Windows.Threading.DispatcherTimer();
+            dpt.Interval = TimeSpan.FromSeconds(3);
+            dpt.Tick += new EventHandler(OnTimerStart);
+            dpt.Start();
         }
 
+        private void OnTimerStart(object sender, EventArgs args)
+        {
+            if (SuggestPivot.Items.Count == 0)
+            {
+                return;
+            }
+            if (SuggestPivot.SelectedIndex == SuggestPivot.Items.Count - 1)
+            {
+                SuggestPivot.SelectedIndex = 0;
+            }
+            else
+            {
+                SuggestPivot.SelectedIndex++;
+            }
+            
+        }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -36,7 +57,7 @@ namespace ZCool
             CanGetMore(false);
             DownloadHelper dl = new DownloadHelper();
             dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadReviewsComplete);
-            dl.HttpWebRequestDownloadGet(HomeUri);
+            dl.HttpWebRequestDownloadGet(HomeUri,true);
 
         }
         private void OnLoadReviewsComplete(object sender, DownloadEventArgs e)
@@ -110,7 +131,7 @@ namespace ZCool
             DownloadHelper dl = new DownloadHelper();
             dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadCamComplete);
             string WebUri = string.Format("{0}index.do?p={1}#mainList", HomeUri, PageIndex);
-            dl.HttpWebRequestDownloadGet(WebUri);
+            dl.HttpWebRequestDownloadGet(WebUri,true);
             
         }
 
