@@ -20,8 +20,8 @@
 
     <!--LayoutRoot 是包含所有页面内容的根网格-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <ScrollViewer>
-            <Grid>
+        <ScrollViewer Name="viewer">
+            <Grid Name="grid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

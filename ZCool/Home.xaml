@@ -52,7 +52,7 @@
         </Grid>
         <ScrollViewer Grid.Row="1" Name="ScrollViewer">
             <StackPanel>
-                <controls:Pivot x:Name="SuggestPivot" Style="{StaticResource PivotStyle1}"/>
+                <controls:Pivot x:Name="SuggestPivot" Style="{StaticResource PivotStyle1}" MouseMove="SuggestPivot_MouseMove"/>
                 <toolkit:WrapPanel x:Name="ImagesWrapPanel" Margin="0,5,0,0" />
                 <HyperlinkButton Name="MoreButton" Click="Button_Click" Background="{StaticResource BackGroundBrush}" Margin="-15,0" Foreground="Black" FontSize="30"/>
             </StackPanel>

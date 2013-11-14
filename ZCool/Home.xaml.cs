@@ -22,10 +22,11 @@ namespace ZCool
         public Action<string> WorkDetial;
         public Action<bool> IsDownLoadFinished;
         bool isStart = true;
+        System.Windows.Threading.DispatcherTimer dpt;
         public Home()
         {
             InitializeComponent();
-            System.Windows.Threading.DispatcherTimer dpt = new System.Windows.Threading.DispatcherTimer();
+            dpt = new System.Windows.Threading.DispatcherTimer();
             dpt.Interval = TimeSpan.FromSeconds(3);
             dpt.Tick += new EventHandler(OnTimerStart);
             dpt.Start();
@@ -178,6 +179,11 @@ namespace ZCool
         private void Border_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             (App.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/VersionPage.xaml", UriKind.Relative));
+        }
+
+        private void SuggestPivot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            dpt.Stop();
         }
 
 

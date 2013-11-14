@@ -66,7 +66,6 @@ namespace ZCool
 
             }
             PageCount = Info.PageCount;
-
             foreach (string Source in ImageList)
             {
                 Image img = new Image();
@@ -78,7 +77,8 @@ namespace ZCool
                 img.Margin = new Thickness(0, 5, 0, 0);
                 ImageStackPanel.Children.Add(img);
             }
-
+            grid.Children.Remove(ImageStackPanel);
+            grid.Children.Insert(0,ImageStackPanel);
         }
         private void ImageOpen(object sender, RoutedEventArgs e)
         {
