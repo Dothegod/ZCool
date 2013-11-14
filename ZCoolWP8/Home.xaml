@@ -6,7 +6,6 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:controlsPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls" x:Class="ZCool.Home"
     mc:Ignorable="d"
     d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded" Foreground="White">
-
     <UserControl.Resources>
         <Style x:Key="PivotStyle1" TargetType="controls:Pivot">
             <Setter Property="Margin" Value="0"/>
@@ -23,19 +22,22 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="controls:Pivot">
-                        <ItemsPresenter x:Name="PivotItemPresenter" Grid.Row="2"/>
+                        <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Background="{TemplateBinding Background}" Grid.RowSpan="3"/>
+                            <ContentControl ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" HorizontalAlignment="Left" Margin="0" Style="{StaticResource PivotTitleStyle}"/>
+                            <controlsPrimitives:PivotHeadersControl x:Name="HeadersListElement" Grid.Row="1"/>
+                            <ItemsPresenter x:Name="PivotItemPresenter" Margin="{TemplateBinding Padding}" Grid.Row="2"/>
+                        </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
-    <UserControl.FontFamily>
-        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-    </UserControl.FontFamily>
-    <UserControl.FontSize>
-        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
-    </UserControl.FontSize>
-
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -56,5 +58,4 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
-
 </UserControl>
