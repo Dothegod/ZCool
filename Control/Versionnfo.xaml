@@ -8,7 +8,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="450" Loaded="UserControl_Loaded">
-    
+
     <Grid x:Name="LayoutRoot" MinHeight="480">
         <Grid.RowDefinitions>
             <RowDefinition Height="400*" />

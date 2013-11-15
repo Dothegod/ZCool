@@ -8,12 +8,12 @@ using System.Windows;
 
 namespace ZCool
 {
-    class WorkInfo
+    public class WorkInfo
     {
         public List<string> ImageList = new List<string>();
         public int PageCount;
     }
-    class WorkParser
+    public class WorkParser
     {
         public WorkInfo Parse(string Content)
         {

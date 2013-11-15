@@ -8,13 +8,13 @@ using System.Windows;
 
 namespace ZCool
 {
-    class Issue
+    public class Issue
     {
         public string ImageUri { get; set; }
         public string TargetUri { get; set; }
     }
 
-    class Issues
+    public class Issues
     {
         public List<Issue> IndexSHowList = new List<Issue>();
         public List<Issue> CamList = new List<Issue>();
@@ -22,7 +22,7 @@ namespace ZCool
 
 
 
-    class HomeParser
+    public class HomeParser
     {
         private const string HomeUri = "http://www.zcool.com.cn/";
         public Issues Parse(string Content)

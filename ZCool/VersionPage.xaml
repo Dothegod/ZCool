@@ -5,7 +5,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:ZCool"
+    xmlns:local="clr-namespace:ZCool;assembly=Control"
     x:Class="ZCool.VersionPage"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -23,7 +23,9 @@
             <Image Source="/image/View.png" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="None"/>
         </Grid>
 
-        <local:Versionnfo x:Name="Verison" Grid.Row="1" Foreground="Black" Margin="10,30,0,0"/>
+
+        <local:Versionnfo Grid.Row="1" Name="Verison" Foreground="Black" HorizontalAlignment="Center" IsChn="True" Margin="-10,50,0,0" />
+
 
     </Grid>
 

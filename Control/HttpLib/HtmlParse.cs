@@ -16,8 +16,8 @@ namespace MyLib.HttpLib
     public class HtmlParser
     {
         string m_Content;
+//         HtmlDocument Doc = new HtmlDocument();
         HtmlDocument Doc = new HtmlDocument();
-
         public HtmlParser(string Content)
         {
             m_Content = Content;
