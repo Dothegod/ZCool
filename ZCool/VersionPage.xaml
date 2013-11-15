@@ -24,7 +24,7 @@
         </Grid>
 
 
-        <local:Versionnfo Grid.Row="1" Name="Verison" Foreground="Black" HorizontalAlignment="Center" IsChn="True" Margin="-10,50,0,0" />
+        <local:Versionnfo x:Name="Verison" Grid.Row="1" Foreground="Black" Margin="10,30,0,0"/>
 
 
     </Grid>

@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage xmlns:ZCool="clr-namespace:ZCool" 
+﻿<phone:PhoneApplicationPage xmlns:ZCool="clr-namespace:ZCool;assembly=Control" 
     x:Class="ZCool.WorkPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
