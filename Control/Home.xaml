@@ -10,28 +10,6 @@
     mc:Ignorable="d"
     d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded" Foreground="White">
 
-    <UserControl.Resources>
-        <Style x:Key="PivotStyle1" TargetType="controls:Pivot">
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <Grid/>
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="controls:Pivot">
-                        <ItemsPresenter x:Name="PivotItemPresenter" Grid.Row="2"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <UserControl.FontFamily>
         <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
     </UserControl.FontFamily>
@@ -53,7 +31,7 @@
         </Grid>
         <ScrollViewer Grid.Row="1" Name="ScrollViewer">
             <StackPanel>
-                <controls:Pivot x:Name="SuggestPivot" Style="{StaticResource PivotStyle1}" MouseMove="SuggestPivot_MouseMove"/>
+                <controls:Pivot x:Name="SuggestPivot" MouseMove="SuggestPivot_MouseMove" Margin="0,-8,0,0"/>
                 <toolkit:WrapPanel x:Name="ImagesWrapPanel" Margin="0,5,0,0" />
                 <HyperlinkButton Name="MoreButton" Click="Button_Click" Background="{StaticResource BackGroundBrush}" Margin="-15,0" Foreground="Black" FontSize="30"/>
             </StackPanel>
