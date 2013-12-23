@@ -36,7 +36,7 @@ namespace ZCool
                 WorkUri = webUri.Replace(".html", "");
                 DownloadHelper dl = new DownloadHelper();
                 dl.DownloadCallbackEvent += OnLoadComplete;
-                dl.HttpWebRequestDownloadGet(webUri,true);
+                dl.HttpWebRequestDownloadGet(webUri, false);
             }
             else
             {
@@ -106,7 +106,7 @@ namespace ZCool
             DownloadHelper dl = new DownloadHelper();
             dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadComplete);
             string WebUri = string.Format("{0}/{1}.html", WorkUri, PageIndex);
-            dl.HttpWebRequestDownloadGet(WebUri,true);
+            dl.HttpWebRequestDownloadGet(WebUri,false);
         }
         private void Image_Hold(object sender, System.Windows.Input.GestureEventArgs e)
         {

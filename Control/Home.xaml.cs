@@ -58,7 +58,7 @@ namespace ZCool
             CanGetMore(false);
             DownloadHelper dl = new DownloadHelper();
             dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadReviewsComplete);
-            dl.HttpWebRequestDownloadGet(HomeUri, true);
+            dl.HttpWebRequestDownloadGet(HomeUri, false);
 
         }
         private void OnLoadReviewsComplete(object sender, DownloadEventArgs e)
@@ -132,7 +132,7 @@ namespace ZCool
             DownloadHelper dl = new DownloadHelper();
             dl.DownloadCallbackEvent += new DownloadHelper.CallbackEvent(OnLoadCamComplete);
             string WebUri = string.Format("{0}index.do?p={1}#mainList", HomeUri, PageIndex);
-            dl.HttpWebRequestDownloadGet(WebUri, true);
+            dl.HttpWebRequestDownloadGet(WebUri, false);
 
         }
 

@@ -29,6 +29,7 @@ namespace MyLib.HttpLib
             Uri _uri = new Uri(url, UriKind.RelativeOrAbsolute);
             HttpWebRequest _httpWebRequest = (HttpWebRequest)WebRequest.Create(_uri);
             _httpWebRequest.Method = "Get";
+            //_httpWebRequest.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Maxthon/4.2.0.4000 Chrome/30.0.1551.0 Safari/537.36";
             System.Net.CookieContainer c = new System.Net.CookieContainer();
             _httpWebRequest.CookieContainer = c;
             AsyncCallback callback = CallBackFunction();
