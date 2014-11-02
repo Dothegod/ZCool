@@ -6,36 +6,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" 
     xmlns:controlsPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls" 
+    xmlns:ADSimple="clr-namespace:ADSimple;assembly=ADSimple" 
     x:Class="ZCool.Home"
     mc:Ignorable="d"
-    d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded" Foreground="White">
+    d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded" Foreground="White" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeNormal}">
 
-    <UserControl.FontFamily>
-        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-    </UserControl.FontFamily>
-    <UserControl.FontSize>
-        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
-    </UserControl.FontSize>
-
-
-    <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="TitlePanel" Grid.Row="0" Background="{StaticResource BackGroundBrush}">
-            <Image Source="/image/View.png" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="None"/>
-            <Border  HorizontalAlignment="Right" Height="35" Margin="0,5,10,0" VerticalAlignment="Top" Width="35" CornerRadius="20" Tap="Border_Tap" Background="#FFFFC448">
-                <TextBlock Text="?" Foreground="Black" TextAlignment="Center" FontWeight="Bold" FontSize="25"/>
-            </Border>
+    <StackPanel>
+        <ADSimple:AdControl/>
+        <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="TitlePanel" Grid.Row="0" Background="{StaticResource BackGroundBrush}">
+                <Image Source="/image/View.png" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="None"/>
+                <Border  HorizontalAlignment="Right" Height="35" Margin="0,5,10,0" VerticalAlignment="Top" Width="35" CornerRadius="20" Tap="Border_Tap" Background="#FFFFC448">
+                    <TextBlock Text="?" Foreground="Black" TextAlignment="Center" FontWeight="Bold" FontSize="25"/>
+                </Border>
+            </Grid>
+            <ScrollViewer Grid.Row="1" x:Name="ScrollViewer">
+                <StackPanel>
+                    <controls:Pivot x:Name="SuggestPivot" MouseMove="SuggestPivot_MouseMove" Margin="0,-8,0,0"/>
+                    <toolkit:WrapPanel x:Name="ImagesWrapPanel" Margin="0,5,0,0" />
+                    <HyperlinkButton x:Name="MoreButton" Click="Button_Click" Background="{StaticResource BackGroundBrush}" Margin="-15,0" Foreground="Black" FontSize="30"/>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
-        <ScrollViewer Grid.Row="1" Name="ScrollViewer">
-            <StackPanel>
-                <controls:Pivot x:Name="SuggestPivot" MouseMove="SuggestPivot_MouseMove" Margin="0,-8,0,0"/>
-                <toolkit:WrapPanel x:Name="ImagesWrapPanel" Margin="0,5,0,0" />
-                <HyperlinkButton Name="MoreButton" Click="Button_Click" Background="{StaticResource BackGroundBrush}" Margin="-15,0" Foreground="Black" FontSize="30"/>
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+    </StackPanel>
 
 </UserControl>
